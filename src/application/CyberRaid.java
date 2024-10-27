@@ -27,7 +27,7 @@ public class CyberRaid {
     	items.add(i3);
     }
     
-    public static void createCharacter(Scanner scnr) {
+    public static void createCharacter(Scanner scnr, Random rand) {
     	String name;
     	String position = "";
     	String[] rand_names = {"Doc", "Marty", "John", "Jane", "Blendin", "Vinny", "Joel", "Rick", "Morty",
@@ -35,7 +35,6 @@ public class CyberRaid {
     			"Stantz", "Zeddimore", "Homer", "Marge", "Bart", "Lisa", "Maggie", "Peter", "Brian", "Stewie", "Lois"};
     	int pos_input;
     	boolean pos_chosen = false;
-        Random rand = new Random();
     	
     	System.out.println("Greetings, player. What is your name?");
         System.out.println("Type a name or press 'r' to generate a name:");
@@ -112,7 +111,7 @@ public class CyberRaid {
         int whichWay;
         
         initializeItemTypes();
-        createCharacter(scnr);
+        createCharacter(scnr, rand);
         while(!gameOver) {
 		
 	        ch.printStats();
@@ -122,6 +121,16 @@ public class CyberRaid {
 	        Drawable.hackPastText();
 			
 			ScriptKiddieFight.startEvent(); //needs a fight with Script Kiddie
+			//while loop containing the fight sequence:
+			//Speed will be equal to random value assigned below:
+			int speed = rand.nextInt(5) + 4;
+						     //String name, int offense,  int speed,  int confidence, int defense
+			Enemy scriptKiddie = new Enemy("Scipt Kiddie", 9, speed, 20, 4) 
+			while(sciptKiddie.isDead == false && ch.isDead == false){
+				//Working here
+				Drawable
+			}
+		
 			ScriptKiddieFight.endEvent();
 			ch.addSkill(0);
 			
