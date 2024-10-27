@@ -133,7 +133,7 @@ public class CyberRaid {
 				int enemyRoll;
 				Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
 				String input = scnr.next();
-				while( input.charAt(0) != 'r' || input.charAt(0) != 'R'){
+				while( input.charAt(0) != 'r' && input.charAt(0) != 'R'){
 					Drawable.typeText("Fool!\n");
 					Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
 					input = scnr.next();
@@ -143,13 +143,22 @@ public class CyberRaid {
 				enemyRoll = Drawable.d20();
 				Drawable.typeText(sciptKiddie.getName() + "rolled a " + enemyRoll + "!");
 				if( enemyRoll > playerRoll){
-					Drawable.typeText(sciptKiddie.getName() "goes first!\n");
+					Drawable.typeText(sciptKiddie.getName() "attacks first!\n");
 				}
 				else
-					Drawable.typeText(ch.getName() "goes first!\n");
+					Drawable.typeText(ch.getName() "attacks first!\n");
 
-				
-				 
+				if( enemyRoll > playerRoll){
+					//enemy rolls to attack
+					enemyRoll = Drawable.d20();
+					Drawable.typeText(sciptKiddie.getName() + "rolled a " + enemyRoll + "!");
+					ch.receiveDamage(scriptKiddie.doDamage(enemyRoll));
+				}
+				else{
+					playerRoll = Drawable.d20();
+					Drawable.typeText(ch.getName() + "rolled a " + playerRoll + "!");
+					scriptKiddie.receiveDamage(ch.doDamage(playerRoll));	
+				}
 					
 			}
 		
