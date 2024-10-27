@@ -1,6 +1,16 @@
 package application.objects;
+
+import java.util.Random;
+
 public class Drawable {
 
+  public static int d20() {
+      Random random = new Random();
+      int randomNumber = random.nextInt(20) + 1; // Generates a number between 1 and 20
+      System.out.println("Random number: " + randomNumber);
+      return randomNumber;
+  }
+	
   public static void typeText(String text) {
         for (char c : text.toCharArray()) {
             System.out.print(c);
@@ -30,7 +40,7 @@ public class Drawable {
   Drawable.typeTextFaster("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\ | | |");
   Drawable.typeTextFaster("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ / | | |");
   Drawable.typeTextFaster("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    /| | | |");
-  Drawable.typeTextFaster("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\|_|_|_|);
+  Drawable.typeTextFaster("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\|_|_|_|");
   Drawable.typeTextFaster(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_(_|_|_)");
   }
   public static void hackPastText() {
