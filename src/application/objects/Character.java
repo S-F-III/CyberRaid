@@ -3,7 +3,7 @@ package application.objects;
 import java.util.*;
 
 public class Character implements Attackable {
-	
+	public boolean isDead = false;
 	private String name;
 	private String position;
 	private int level;
