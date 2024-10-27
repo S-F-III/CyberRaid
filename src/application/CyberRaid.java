@@ -125,10 +125,32 @@ public class CyberRaid {
 			//Speed will be equal to random value assigned below:
 			int speed = rand.nextInt(5) + 4;
 						     //String name, int offense,  int speed,  int confidence, int defense
-			Enemy scriptKiddie = new Enemy("Scipt Kiddie", 9, speed, 20, 4) 
+			Enemy scriptKiddie = new Enemy("Scipt Kiddie", 9, speed, 20, 4);
+			
+				
 			while(sciptKiddie.isDead == false && ch.isDead == false){
-				//Working here
-				Drawable
+				int playerRoll;
+				int enemyRoll;
+				Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
+				String input = scnr.next();
+				while( input.charAt(0) != 'r' || input.charAt(0) != 'R'){
+					Drawable.typeText("Fool!\n");
+					Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
+					input = scnr.next();
+				} 
+				playerRoll = Drawable.d20();
+				Drawable.typeText(ch.getName() + "rolled a " + playerRoll + "!");
+				enemyRoll = Drawable.d20();
+				Drawable.typeText(sciptKiddie.getName() + "rolled a " + enemyRoll + "!");
+				if( enemyRoll > playerRoll){
+					Drawable.typeText(sciptKiddie.getName() "goes first!\n");
+				}
+				else
+					Drawable.typeText(ch.getName() "goes first!\n");
+
+				
+				 
+					
 			}
 		
 			ScriptKiddieFight.endEvent();
