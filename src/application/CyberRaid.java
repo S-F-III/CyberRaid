@@ -3,6 +3,7 @@ package application;
 import java.util.*;
 import application.objects.Character;
 import application.objects.DataCenterEvent;
+import application.objects.Drawable;
 import application.objects.FinalFight;
 import application.objects.InternetCafeEvent;
 import application.objects.Item;
@@ -75,7 +76,33 @@ public class CyberRaid {
         
         System.out.println("\nYour name is " + name + " and you are a " + position + ".");
         ch = new Character(name, position);
-        //scnr.close();
+    }
+    
+    public static void SmallBusinessEventGo(Character ch) {
+    	SmallBusinessEvent.startEvent();
+    	ch.addSkill(3);
+		//need to run ransomWare check
+        boolean ransomWare = false;
+        if (ch.getPosition().equals("Cyber Defense Incident Responder")) {
+           int ransomCheck = Drawable.d20() + 2; //Defense class has a base defense of 9
+            if(ransomCheck >= 10)
+                Drawable.typeText("\"That is clearly an attempt to install ransomware, lets just close that and keep moving\"");
+            else {
+                Drawable.typeText("The screen suddenly locks up and a large message appears\n It reads \"Make a payment to...\"\n you stop reading and can't believe you fell for a ransomware attack");
+                ch.removeSkill(0);
+            }
+        }
+        else {
+        	int ransomCheck = Drawable.d20() + 2;
+        	if(ransomCheck >= 15) {
+        		Drawable.typeText("\"That is clearly an attempt to install ransomware, lets just close that and keep moving\"");
+        	}
+        	else {
+        		Drawable.typeText("The screen suddenly locks up and a large message appears\n It reads \"Make a payment to...\"\n you stop reading and can't believe you fell for a ransomware attack");
+        		ch.removeSkill(0);
+        	}
+        }
+		SmallBusinessEvent.endEvent();
     }
     
     public static void main(String[] args) {
@@ -92,14 +119,16 @@ public class CyberRaid {
 	
 	        StartGameEvent.startEvent();
 	        StartGameEvent.endEvent();
+	        Drawable.hackPastText();
 			
 			ScriptKiddieFight.startEvent(); //needs a fight with Script Kiddie
 			ScriptKiddieFight.endEvent();
+			ch.addSkill(0);
 			
 			boolean decision = false;
 			decisionCounter = 0;
 				
-			while (!decision || decisionCounter < 3) {
+			while (!decision) {
 				System.out.println("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
 				try {
 					whichWay = scnr.nextInt();
@@ -107,18 +136,18 @@ public class CyberRaid {
 					switch(whichWay) {
 						case 1:
 							DataCenterEvent.startEvent();
+							ch.addSkill(2);
 							DataCenterEvent.endEvent();
 							
-							SmallBusinessEvent.startEvent();
-							SmallBusinessEvent.endEvent();
+							SmallBusinessEventGo(ch);
 							
 							decision = true;
 							break;
 						case 2:
-							SmallBusinessEvent.startEvent();
-							SmallBusinessEvent.endEvent();
+							SmallBusinessEventGo(ch);
 							
 							DataCenterEvent.startEvent();
+							ch.addSkill(2);
 							DataCenterEvent.endEvent();
 							
 							decision = true;
@@ -138,6 +167,7 @@ public class CyberRaid {
 			}*/
 	
 			InternetCafeEvent.startEvent();
+			ch.addSkill(1);
 			InternetCafeEvent.endEvent();
 			
 			RipOffEvent.startEvent();
@@ -175,6 +205,7 @@ public class CyberRaid {
 			}
 			FinalFight.endEvent();
 	        gameOver = true;
+	        Drawable.youWinText();
 	        scnr.close();
         }
     }
