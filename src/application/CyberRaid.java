@@ -139,24 +139,24 @@ public class CyberRaid {
 					input = scnr.next();
 				} 
 				playerRoll = Drawable.d20();
-				Drawable.typeText(ch.getName() + "rolled a " + playerRoll + "!");
+				Drawable.typeText(ch.getName() + " rolled a " + playerRoll + "!");
 				enemyRoll = Drawable.d20();
-				Drawable.typeText(sciptKiddie.getName() + "rolled a " + enemyRoll + "!");
+				Drawable.typeText(sciptKiddie.getName() + " rolled a " + enemyRoll + "!");
 				if( enemyRoll > playerRoll){
-					Drawable.typeText(sciptKiddie.getName() "attacks first!\n");
+					Drawable.typeText(sciptKiddie.getName() " attacks first!\n");
 				}
 				else
-					Drawable.typeText(ch.getName() "attacks first!\n");
+					Drawable.typeText(ch.getName() " attacks first!\n");
 
 				if( enemyRoll > playerRoll){
 					//enemy rolls to attack
 					enemyRoll = Drawable.d20();
-					Drawable.typeText(sciptKiddie.getName() + "rolled a " + enemyRoll + "!");
+					Drawable.typeText(sciptKiddie.getName() + " rolled a " + enemyRoll + "!");
 					ch.receiveDamage(scriptKiddie.doDamage(enemyRoll));
 				}
 				else{
 					playerRoll = Drawable.d20();
-					Drawable.typeText(ch.getName() + "rolled a " + playerRoll + "!");
+					Drawable.typeText(ch.getName() + " rolled a " + playerRoll + "!");
 					scriptKiddie.receiveDamage(ch.doDamage(playerRoll));	
 				}
 					
