@@ -4,6 +4,7 @@ import java.util.*;
 import application.objects.Character;
 import application.objects.DataCenterEvent;
 import application.objects.Drawable;
+import application.objects.Enemy;
 import application.objects.FinalFight;
 import application.objects.InternetCafeEvent;
 import application.objects.Item;
@@ -124,16 +125,16 @@ public class CyberRaid {
 			//while loop containing the fight sequence:
 			//Speed will be equal to random value assigned below:
 			int speed = rand.nextInt(5) + 4;
-						     //String name, int offense,  int speed,  int confidence, int defense
-			Enemy scriptKiddie = new Enemy("Scipt Kiddie", 9, speed, 20, 4);
-			
+			//String name, int offense,  int speed,  int confidence, int defense
+			Enemy scriptKiddie = new Enemy("Script Kiddie", 9, speed, 20, 4);		
 				
-			while(sciptKiddie.isDead == false && ch.isDead == false){
+			while (scriptKiddie.isDead == false) {
 				int playerRoll;
 				int enemyRoll;
 				Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
 				String input = scnr.next();
-				while( input.charAt(0) != 'r' && input.charAt(0) != 'R'){
+				while (input.charAt(0) != 'r' && input.charAt(0) != 'R') {
+				//while (!(input.equals("r")) || !(input.equals("R"))) {
 					Drawable.typeText("Fool!\n");
 					Drawable.typeText("Roll to determine who attacks first! Press 'r' to roll a d20!");
 					input = scnr.next();
@@ -141,25 +142,13 @@ public class CyberRaid {
 				playerRoll = Drawable.d20();
 				Drawable.typeText(ch.getName() + " rolled a " + playerRoll + "!");
 				enemyRoll = Drawable.d20();
-				Drawable.typeText(sciptKiddie.getName() + " rolled a " + enemyRoll + "!");
+				Drawable.typeText(scriptKiddie.getName() + " rolled a " + enemyRoll + "!");
 				if( enemyRoll > playerRoll){
-					Drawable.typeText(sciptKiddie.getName() " attacks first!\n");
+					Drawable.typeText(scriptKiddie.getName() + " goes first!\n");
 				}
-				else
-					Drawable.typeText(ch.getName() " attacks first!\n");
-
-				if( enemyRoll > playerRoll){
-					//enemy rolls to attack
-					enemyRoll = Drawable.d20();
-					Drawable.typeText(sciptKiddie.getName() + " rolled a " + enemyRoll + "!");
-					ch.receiveDamage(scriptKiddie.doDamage(enemyRoll));
-				}
-				else{
-					playerRoll = Drawable.d20();
-					Drawable.typeText(ch.getName() + " rolled a " + playerRoll + "!");
-					scriptKiddie.receiveDamage(ch.doDamage(playerRoll));	
-				}
-					
+				else {
+					Drawable.typeText(ch.getName() + " goes first!\n");
+				}	
 			}
 		
 			ScriptKiddieFight.endEvent();
