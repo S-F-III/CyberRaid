@@ -25,13 +25,14 @@ public class Drawable {
         }
         System.out.println();
     }
-  public static void gameOverText()
+  public static void gameOverText(){
   Drawable.typeTextFaster(" _____   ___  ___  ___ _____   _____  _   _ ___________ _ _ _ ");
   Drawable.typeTextFaster("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\ | | |");
   Drawable.typeTextFaster("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ / | | |");
   Drawable.typeTextFaster("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    /| | | |");
   Drawable.typeTextFaster("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\|_|_|_|);
   Drawable.typeTextFaster(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_(_|_|_)");
+  }
   public static void hackPastText() {
   Drawable.typeTextFaster(" _   _   ___  _____  _   __  _____ _   _  _____  ______  ___   _____ _____ ");
   Drawable.typeTextFaster("| | | | / _ \\/  __ \\| | / / |_   _| | | ||  ___| | ___ \\/ _ \\ /  ___|_   _|");
@@ -39,5 +40,13 @@ public class Drawable {
   Drawable.typeTextFaster("|  _  ||  _  | |    |    \\    | | |  _  ||  __|  |  __/|  _  | `--. \\ | |");
   Drawable.typeTextFaster("| | | || | | | \\__/\\| |\\  \\   | | | | | || |___  | |   | | | |/\\__/ / | |  ");
   Drawable.typeTextFaster("\\_| |_/\\_| |_/\\____/\\_| \\_/   \\_/ \\_| |_/\\____/  \\_|   \\_| |_/\\____/  \\_/ ");
+  }
+  public static void youWinText() {
+  Drawable.typeTextFaster("__   _______ _   _   _    _ _____ _   _ _ _ _ ");
+  Drawable.typeTextFaster("\\ \\ / /  _  | | | | | |  | |_   _| \\ | | | | |");
+  Drawable.typeTextFaster(" \\ V /| | | | | | | | |  | | | | |  \\| | | | |");
+  Drawable.typeTextFaster("  \\ / | | | | | | | | |/\\| | | | | . ` | | | |");
+  Drawable.typeTextFaster("  | | \\ \\_/ / |_| | \\  /\\  /_| |_| |\\  |_|_|_|");
+  Drawable.typeTextFaster("  \\_/  \\___/ \\___/   \\/  \\/ \\___/\\_| \\_(_|_|_)");
   }
 }
