@@ -107,7 +107,7 @@ public class CyberRaid {
 			DataCenterEvent.endEvent();
 			decision = true;
 			}
-			else
+			else {
 			System.out.println("You need to make a different choice");
 			int decisionCounter++:
 			}
@@ -122,6 +122,30 @@ public class CyberRaid {
 		RipOffEvent.endEvent();
 
 		FinalFight.startEvent();
+		decision = false;
+		decisionCounter = 0;
+		while(!decision){
+			System.out.println("Will you follow your destiny?\nPress 1 for yes and 2 for no")
+				whichWay = scnr.NextInt();
+			if(whichWay == 1){
+				System.out.println("Opening the door you see the former State Actors staring out a large window.\nWithout giving you a chance to speak they turn and fight.");
+				decision = true;
+			}
+			else if(whichWay == 2) {
+				System.out.println("The door looms over you as you contemplate life in this decade.\nMaybe it wont be so bad...");
+				decision = true;	
+				gameOver = true;
+			}
+			else {
+			System.out.println("You need to make a different choice");
+			int decisionCounter++:
+			}
+			if(decisionCounter == 3) { 
+				decision = true; 
+				gameOver = true;
+			}
+			
+		}
 		FinalFight.endEvent();
             	gameOver = true;
         }
