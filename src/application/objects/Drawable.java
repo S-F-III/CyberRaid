@@ -7,7 +7,7 @@ public class Drawable {
   public static int d20() {
       Random random = new Random();
       int randomNumber = random.nextInt(20) + 1; // Generates a number between 1 and 20
-      System.out.println("Random number: " + randomNumber);
+      typeText("D20 dice roll: \n\t...\n\t\t...\n\t\t\t..." + randomNumber + "!");
       return randomNumber;
   }
 	
