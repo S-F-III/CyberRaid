@@ -2,7 +2,7 @@ package application.objects;
 
 import java.util.*;
 
-public class Character {
+public class Character implements Attackable {
 	
 	private String name;
 	private String position;
@@ -13,6 +13,8 @@ public class Character {
 	private int experience; //Constitution
 	private int confidence; //HP
 	private int defense; //Perception
+	private int itemBonus; //variable to hold temp item bonus increases
+    
 	static ArrayList<Item> inventory = new ArrayList<Item>();
 	static ArrayList<Skill> skills = new ArrayList<Skill>();
 	
@@ -65,6 +67,43 @@ public class Character {
 		skills.add(s3);
 		skills.add(s4);
 	}
+	@Override
+	public boolean receiveDamage(int damage) {
+		int bonus;
+		if(defense >= 9)
+			bonus = 2;
+		else if(defense >= 7 && defense < 9)
+			bonus = 1;
+		else if(defense >= 5 && defense < 7)
+			bonus = 0;
+		else
+			bonus = -1;
+		if ((confidence - damage) <= 0) {
+			isDead = true;
+		}
+		else {
+			confidence -= damage * (100 - (5 * (defense + bonus)));
+		}
+		return isDead;
+	}
+	
+	@Override
+	public int doDamage(int diceRoll) {
+		int bonus;
+		if(offense >= 9)
+			bonus = 2;
+		else if(offense >= 7 && offense < 9)
+			bonus = 1;
+		else if(offense >= 5 && offense < 7)
+			bonus = 0;
+		else
+			bonus = -1;
+		
+		int damage = offense + bonus + itemBonus;
+		itemBonus = 0;
+		 return damage;
+	}
+
 	
 	public void printStats() {
 		System.out.println("\nName: " + name);
