@@ -1,4 +1,4 @@
-public package application.objects;
+package application.objects;
 public interface Attackable {
 	
 	public boolean receiveDamage(int damage);
