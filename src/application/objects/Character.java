@@ -67,20 +67,20 @@ public class Character {
 	}
 	
 	public void printStats() {
-		Drawable.typeText("\nName: " + name);
-		Drawable.typeText("Position: " + position);
-		Drawable.typeText("Offense: " + offense);
-		Drawable.typeText("Code Efficiency: " + code_eff);
-		Drawable.typeText("Speed: " + speed);
-		Drawable.typeText("Experience: " + experience);
-		Drawable.typeText("Confidence: " + confidence);
-		Drawable.typeText("Defense: " + defense);
+		System.out.println("\nName: " + name);
+		System.out.println("Position: " + position);
+		System.out.println("Offense: " + offense);
+		System.out.println("Code Efficiency: " + code_eff);
+		System.out.println("Speed: " + speed);
+		System.out.println("Experience: " + experience);
+		System.out.println("Confidence: " + confidence);
+		System.out.println("Defense: " + defense);
 	}
 	
 	public void printInventory() {
 		for (int i = 0; i < inventory.size(); i++) {
 			if (inventory.get(i).getInInventory()) {
-				Drawable.typeText(inventory.get(i).getName() + " - " + inventory.get(i).getDescription());
+				System.out.println(inventory.get(i).getName() + " - " + inventory.get(i).getDescription());
 			}
 		}
 	}
@@ -101,7 +101,7 @@ public class Character {
 	
 	public void addItem(int i) {
 		if (inventory.get(i).getInInventory()) {
-			Drawable.typeText("You already have a " + inventory.get(i).getName() + "!");
+			System.out.println("You already have a " + inventory.get(i).getName() + "!");
 		}
 		else {
 			inventory.get(i).setInInventory(true);
@@ -110,7 +110,7 @@ public class Character {
 	
 	public void useItem(int i) {
 		if (!(inventory.get(i).getInInventory())) {
-			Drawable.typeText("You do not have a " + inventory.get(i).getName() + "!");
+			System.out.println("You do not have a " + inventory.get(i).getName() + "!");
 		}
 		else {
 			inventory.get(i).setInInventory(false);
@@ -123,13 +123,13 @@ public class Character {
 			else {
 				this.speed += 2;
 			}
-			Drawable.typeText("Used " + inventory.get(i).getName() + "!");
+			System.out.println("Used " + inventory.get(i).getName() + "!");
 		}
 	}
 	
 	public void addSkill(int i) {
 		if (skills.get(i).getUnlocked()) {
-			Drawable.typeText("Skill already obtained!");
+			System.out.println("Skill already obtained!");
 		}
 		else {
 			skills.get(i).setUnlocked(true);
@@ -139,13 +139,13 @@ public class Character {
 			else {
 				this.defense += 2;
 			}
-			Drawable.typeText("Obtained Skill \"" + skills.get(i).getName() + "\"!");
+			System.out.println("-----Obtained Skill \"" + skills.get(i).getName() + "\"!-----");
 		}
 	}
 	
 	public void removeSkill(int i) {
 		if (!(skills.get(i).getUnlocked())) {
-			Drawable.typeText("Skill not acquired!");
+			System.out.println("Skill not acquired!");
 		}
 		else {
 			skills.get(i).setUnlocked(false);
@@ -155,7 +155,7 @@ public class Character {
 			else {
 				this.defense -= 2;
 			}
-			Drawable.typeText("Skill \"" + skills.get(i).getName() + "\" removed!");
+			System.out.println("Skill \"" + skills.get(i).getName() + "\" removed!");
 		}
 	}
 
