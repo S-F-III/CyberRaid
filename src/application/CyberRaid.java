@@ -30,8 +30,8 @@ public class CyberRaid {
         Scanner scnr = new Scanner(System.in);
         Random rand = new Random();
     	
-    	System.out.println("Greetings, player. What is your name?");
-        System.out.println("Type a name or press 'r' to generate a name:");
+    	Drawable.typeText("Greetings, player. What is your name?");
+        Drawable.typeText("Type a name or press 'r' to generate a name:");
         name = scnr.next();
         if (name.equals("r")) {
         	try {
@@ -42,32 +42,32 @@ public class CyberRaid {
         		e.printStackTrace();
         	}
         }
-        System.out.println("\nHello, " + name +". Which position do you wish to choose?");
-        System.out.println("0 - Cyber Security Officer; 1 - Red Team Specialist; 2 - Cyber Defense Incident Responder");
+        Drawable.typeText("\nHello, " + name +". Which position do you wish to choose?");
+        Drawable.typeText("0 - Cyber Security Officer; 1 - Red Team Specialist; 2 - Cyber Defense Incident Responder");
         while (!pos_chosen) {
         	pos_input = scnr.nextInt();
         	switch (pos_input) {
             	case 0:
-	            		System.out.println("You have selected Cyber Security Officer.");
+	            		Drawable.typeText("You have selected Cyber Security Officer.");
 	            		position = positions[0];
 	            		pos_chosen = true;
 	            		break;
 	            case 1:
-	            		System.out.println("You have selected Red Flag Specialist.");
+	            		Drawable.typeText("You have selected Red Flag Specialist.");
 	            		position = positions[1];
 	            		pos_chosen = true;
 	            		break;
 	            case 2:
-	            		System.out.println("You have selected Cyber Defense Incident Responder.");
+	            		Drawable.typeText("You have selected Cyber Defense Incident Responder.");
 	            		position = positions[2];
 	            		pos_chosen = true;
 	            		break;
 	            default:
-	            		System.out.println("Invalid choice. Try again.");
+	            		Drawable.typeText("Invalid choice. Try again.");
         	}
         }
         
-        System.out.println("\nYour name is " + name + " and you are a " + position + ".");
+        Drawable.typeText("\nYour name is " + name + " and you are a " + position + ".");
         ch = new Character(name, position);
         scnr.close();
     }
@@ -90,7 +90,7 @@ public class CyberRaid {
 		int decisionCounter = 0
 			
 		while(!decision) {
-			System.out.println("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
+			Drawable.typeText("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
 			int whichWay = scnr.NextInt();
 		
 			if(whichWay == 1) {
@@ -108,7 +108,7 @@ public class CyberRaid {
 			decision = true;
 			}
 			else {
-			System.out.println("You need to make a different choice");
+			Drawable.typeText("You need to make a different choice");
 			int decisionCounter++:
 			}
 			if(decisionCounter == 3) { 
@@ -125,19 +125,19 @@ public class CyberRaid {
 		decision = false;
 		decisionCounter = 0;
 		while(!decision){
-			System.out.println("Will you follow your destiny?\nPress 1 for yes and 2 for no")
+			Drawable.typeText("Will you follow your destiny?\nPress 1 for yes and 2 for no")
 				whichWay = scnr.NextInt();
 			if(whichWay == 1){
-				System.out.println("Opening the door you see the former State Actors staring out a large window.\nWithout giving you a chance to speak they turn and fight.");
+				Drawable.typeText("Opening the door you see the former State Actors staring out a large window.\nWithout giving you a chance to speak they turn and fight.");
 				decision = true;
 			}
 			else if(whichWay == 2) {
-				System.out.println("The door looms over you as you contemplate life in this decade.\nMaybe it wont be so bad...");
+				Drawable.typeText("The door looms over you as you contemplate life in this decade.\nMaybe it wont be so bad...");
 				decision = true;	
 				gameOver = true;
 			}
 			else {
-			System.out.println("You need to make a different choice");
+			Drawable.typeText("You need to make a different choice");
 			int decisionCounter++:
 			}
 			if(decisionCounter == 3) { 
