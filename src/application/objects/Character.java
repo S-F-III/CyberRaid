@@ -194,7 +194,7 @@ public class Character implements Attackable {
 			else {
 				this.defense -= 2;
 			}
-			System.out.println("Skill \"" + skills.get(i).getName() + "\" removed!");
+			System.out.println("-----Skill \"" + skills.get(i).getName() + "\" removed!-----");
 		}
 	}
 
