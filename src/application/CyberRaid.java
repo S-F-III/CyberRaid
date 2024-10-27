@@ -2,7 +2,14 @@ package application;
 
 import java.util.*;
 import application.objects.Character;
+import application.objects.DataCenterEvent;
+import application.objects.FinalFight;
+import application.objects.InternetCafeEvent;
 import application.objects.Item;
+import application.objects.RipOffEvent;
+import application.objects.ScriptKiddieFight;
+import application.objects.SmallBusinessEvent;
+import application.objects.StartGameEvent;
 
 public class CyberRaid {
 	static String positions[] = {"Cyber Security Officer", "Red Team Specialist", "Cyber Defense Incident Responder"};
@@ -19,7 +26,7 @@ public class CyberRaid {
     	items.add(i3);
     }
     
-    public static void createCharacter() {
+    public static void createCharacter(Scanner scnr) {
     	String name;
     	String position = "";
     	String[] rand_names = {"Doc", "Marty", "John", "Jane", "Blendin", "Vinny", "Joel", "Rick", "Morty",
@@ -27,11 +34,10 @@ public class CyberRaid {
     			"Stantz", "Zeddimore", "Homer", "Marge", "Bart", "Lisa", "Maggie", "Peter", "Brian", "Stewie", "Lois"};
     	int pos_input;
     	boolean pos_chosen = false;
-        Scanner scnr = new Scanner(System.in);
         Random rand = new Random();
     	
-    	Drawable.typeText("Greetings, player. What is your name?");
-        Drawable.typeText("Type a name or press 'r' to generate a name:");
+    	System.out.println("Greetings, player. What is your name?");
+        System.out.println("Type a name or press 'r' to generate a name:");
         name = scnr.next();
         if (name.equals("r")) {
         	try {
@@ -42,114 +48,134 @@ public class CyberRaid {
         		e.printStackTrace();
         	}
         }
-        Drawable.typeText("\nHello, " + name +". Which position do you wish to choose?");
-        Drawable.typeText("0 - Cyber Security Officer; 1 - Red Team Specialist; 2 - Cyber Defense Incident Responder");
+        System.out.println("\nHello, " + name +". Which position do you wish to choose?");
+        System.out.println("0 - Cyber Security Officer; 1 - Red Team Specialist; 2 - Cyber Defense Incident Responder");
         while (!pos_chosen) {
         	pos_input = scnr.nextInt();
         	switch (pos_input) {
             	case 0:
-	            		Drawable.typeText("You have selected Cyber Security Officer.");
+	            		System.out.println("You have selected Cyber Security Officer.");
 	            		position = positions[0];
 	            		pos_chosen = true;
 	            		break;
 	            case 1:
-	            		Drawable.typeText("You have selected Red Flag Specialist.");
+	            		System.out.println("You have selected Red Flag Specialist.");
 	            		position = positions[1];
 	            		pos_chosen = true;
 	            		break;
 	            case 2:
-	            		Drawable.typeText("You have selected Cyber Defense Incident Responder.");
+	            		System.out.println("You have selected Cyber Defense Incident Responder.");
 	            		position = positions[2];
 	            		pos_chosen = true;
 	            		break;
 	            default:
-	            		Drawable.typeText("Invalid choice. Try again.");
+	            		System.out.println("Invalid choice. Try again.");
         	}
         }
         
-        Drawable.typeText("\nYour name is " + name + " and you are a " + position + ".");
+        System.out.println("\nYour name is " + name + " and you are a " + position + ".");
         ch = new Character(name, position);
-        scnr.close();
+        //scnr.close();
     }
     
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         Random rand = new Random();
+        int decisionCounter;
+        int whichWay;
         
         initializeItemTypes();
-        createCharacter();
+        createCharacter(scnr);
         while(!gameOver) {
 		
-        	ch.printStats();
-
-		StartGameEvent.eventStart(); //needs a fight with ATP
-		StartGameEvent.eventEnd();
-		scriptKiddieEvent.eventStart(); //needs a fight with Script Kiddie
-		scriptKiddieEvent.eventEnd();
-		bool decision = false
-		int decisionCounter = 0
+	        ch.printStats();
+	
+	        StartGameEvent.startEvent();
+	        StartGameEvent.endEvent();
 			
-		while(!decision) {
-			Drawable.typeText("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
-			int whichWay = scnr.NextInt();
-		
-			if(whichWay == 1) {
-			DateCenterEvent.startEvent();
-			DataCenterEvent.endEvent();
-			SmallBusiness.startEvent();
-			SmallBusiness.endEvent();
-			decision = true;
+			ScriptKiddieFight.startEvent(); //needs a fight with Script Kiddie
+			ScriptKiddieFight.endEvent();
+			
+			boolean decision = false;
+			decisionCounter = 0;
+				
+			while (!decision || decisionCounter < 3) {
+				System.out.println("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
+				try {
+					whichWay = scnr.nextInt();
+				
+					switch(whichWay) {
+						case 1:
+							DataCenterEvent.startEvent();
+							DataCenterEvent.endEvent();
+							
+							SmallBusinessEvent.startEvent();
+							SmallBusinessEvent.endEvent();
+							
+							decision = true;
+							break;
+						case 2:
+							SmallBusinessEvent.startEvent();
+							SmallBusinessEvent.endEvent();
+							
+							DataCenterEvent.startEvent();
+							DataCenterEvent.endEvent();
+							
+							decision = true;
+							break;
+						default:
+							System.out.println("You need to make a different choice");
+							decisionCounter++;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			else if(whichWay == 2) {
-			SmallBusiness.startEvent();
-			SmallBusiness.endEvent();
-			DateCenterEvent.startEvent();
-			DataCenterEvent.endEvent();
-			decision = true;
-			}
-			else {
-			Drawable.typeText("You need to make a different choice");
-			int decisionCounter++:
-			}
-			if(decisionCounter == 3) { 
-			decision = true; 
-			gameOver = true;
-			}
-
-		InternetCafeEvent.startEvent();
-		InternetCafeEvent.endEvent();
-		RipOffEvent.startEvent();
-		RipOffEvent.endEvent();
-
-		FinalFight.startEvent();
-		decision = false;
-		decisionCounter = 0;
-		while(!decision){
-			Drawable.typeText("Will you follow your destiny?\nPress 1 for yes and 2 for no")
-				whichWay = scnr.NextInt();
-			if(whichWay == 1){
-				Drawable.typeText("Opening the door you see the former State Actors staring out a large window.\nWithout giving you a chance to speak they turn and fight.");
-				decision = true;
-			}
-			else if(whichWay == 2) {
-				Drawable.typeText("The door looms over you as you contemplate life in this decade.\nMaybe it wont be so bad...");
-				decision = true;	
-				gameOver = true;
-			}
-			else {
-			Drawable.typeText("You need to make a different choice");
-			int decisionCounter++:
-			}
-			if(decisionCounter == 3) { 
+			/*if (decisionCounter == 3) { 
 				decision = true; 
 				gameOver = true;
-			}
+				System.out.println("You spontaneously die from standing in one place for too long.\nG A M E   O V E R");
+			}*/
+	
+			InternetCafeEvent.startEvent();
+			InternetCafeEvent.endEvent();
 			
-		}
-		FinalFight.endEvent();
-            	gameOver = true;
+			RipOffEvent.startEvent();
+			RipOffEvent.endEvent();
+	
+			FinalFight.startEvent();
+			decision = false;
+			decisionCounter = 0;
+			while(!decision) {
+				System.out.println("Will you follow your destiny?\nPress 1 for yes and 2 for no");
+				
+				try {
+					whichWay = scnr.nextInt();
+					if (whichWay == 1) {
+						System.out.println("Opening the door you see the former State Actors staring out a large window.\nWithout giving you a chance to speak they turn and fight.");
+						decision = true;
+					}
+					else if (whichWay == 2) {
+						System.out.println("The door looms over you as you contemplate life in this decade.\nMaybe it wont be so bad...");
+						decision = true;	
+						gameOver = true;
+					}
+					else {
+						System.out.println("You need to make a different choice");
+						decisionCounter++;
+					}
+					if (decisionCounter == 3) { 
+						decision = true; 
+						gameOver = true;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			FinalFight.endEvent();
+	        gameOver = true;
+	        scnr.close();
         }
-        
     }
-
 }
