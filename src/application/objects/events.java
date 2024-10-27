@@ -1,7 +1,13 @@
 package application.objects;
-public interface Events {
 
-	void eventStart();
-	void eventEnd();
+interface Events {
+
+	static void startEvent() {
+		
+	}
+	
+	static void endEvent() {
+		
+	}
 
 }
