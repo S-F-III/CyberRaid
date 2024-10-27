@@ -79,8 +79,51 @@ public class CyberRaid {
         initializeItemTypes();
         createCharacter();
         while(!gameOver) {
+		
         	ch.printStats();
-            gameOver = true;
+
+		StartGameEvent.eventStart(); //needs a fight with ATP
+		StartGameEvent.eventEnd();
+		scriptKiddieEvent.eventStart(); //needs a fight with Script Kiddie
+		scriptKiddieEvent.eventEnd();
+		bool decision = false
+		int decisionCounter = 0
+			
+		while(!decision) {
+			System.out.println("Will you go to the Data Center or the Small Business?\nPress 1 for Data Center and 2 for the Small Business");
+			int whichWay = scnr.NextInt();
+		
+			if(whichWay == 1) {
+			DateCenterEvent.startEvent();
+			DataCenterEvent.endEvent();
+			SmallBusiness.startEvent();
+			SmallBusiness.endEvent();
+			decision = true;
+			}
+			else if(whichWay == 2) {
+			SmallBusiness.startEvent();
+			SmallBusiness.endEvent();
+			DateCenterEvent.startEvent();
+			DataCenterEvent.endEvent();
+			decision = true;
+			}
+			else
+			System.out.println("You need to make a different choice");
+			int decisionCounter++:
+			}
+			if(decisionCounter == 3) { 
+			decision = true; 
+			gameOver = true;
+			}
+
+		InternetCafeEvent.startEvent();
+		InternetCafeEvent.endEvent();
+		RipOffEvent.startEvent();
+		RipOffEvent.endEvent();
+
+		FinalFight.startEvent();
+		FinalFight.endEvent();
+            	gameOver = true;
         }
         
     }
